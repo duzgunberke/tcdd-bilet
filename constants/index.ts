@@ -49,19 +49,18 @@ export const NAV_LINKS = [
   // FOOTER SECTION
   export const FOOTER_LINKS = [
     {
-      title: 'Learn More',
+      title: 'Daha Fazla Bilgi Edinin',
       links: [
-        'About Hilink',
-        'Press Releases',
-        'Environment',
-        'Jobs',
-        'Privacy Policy',
-        'Contact Us',
+        'Hakkımızda',
+        'Basında Biz',
+        'Kariyer',
+        'Gizlilik Politikası',
+        'Bize Ulaşın',
       ],
     },
     {
-      title: 'Our Community',
-      links: ['Climbing xixixi', 'Hiking hilink', 'Hilink kinthill'],
+      title: 'Topluluğumuz',
+      links: ['Deneme 1', 'Deneme 2', 'Deneme 3'],
     },
   ];
   
