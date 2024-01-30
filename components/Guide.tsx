@@ -6,7 +6,7 @@ const Guide = () => {
   return (
     <section className="flexCenter flex-col">
       <div className="padding-container max-container w-full pb-24">
-        <Image src="/camp.svg" alt="camp" width={50} height={50} />
+        <Image src="/train.svg" alt="train" width={50} height={50} />
         <p className="uppercase regular-18 -mt-1 mb-3 text-green-50">
           Sizin için buradayız
         </p>
@@ -20,7 +20,7 @@ const Guide = () => {
 
       <div className="flexCenter max-container relative w-full">
         <Image 
-          src="/boat.png"
+          src="/railway.png"
           alt="boat"
           width={1440}
           height={580}
@@ -41,12 +41,12 @@ const Guide = () => {
                 <p className="regular-16 text-gray-20">Nereye</p>
                 <p className="bold-16 text-green-50">🛤️🚄</p>
               </div>
-              <p className="bold-20 mt-2">Aguas Calientes</p>
+              <p className="bold-20 mt-2">İzmit</p>
             </div>
 
             <div className='flex w-full flex-col'>
               <p className="regular-16 text-gray-20">Nereden</p>
-              <h4 className="bold-20 mt-2 whitespace-nowrap">Wonorejo Pasuruan</h4>
+              <h4 className="bold-20 mt-2 whitespace-nowrap">Konya (Selçuklu)</h4>
             </div>
           </div>
         </div>

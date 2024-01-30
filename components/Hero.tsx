@@ -8,8 +8,8 @@ const Hero = () => {
 
       <div className="relative z-20 flex flex-1 flex-col xl:w-1/2">
         <Image 
-          src="/camp.svg"
-          alt="camp"
+          src="/train.svg"
+          alt="train"
           width={50}
           height={50}
           className="absolute left-[-5px] top-[-30px] w-10 lg:w-[50px]"
@@ -57,19 +57,19 @@ const Hero = () => {
 
            <div className="flex flex-col">
             <div className="flexBetween">
-              <p className="regular-16 text-gray-20">Location</p>
+              <p className="regular-16 text-gray-20">Lokasyon</p>
               <Image src="/close.svg" alt="close" width={24} height={24} />
             </div>
-            <p className="bold-20 text-white">Aguas Calientes</p>
+            <p className="bold-20 text-white">İzmit</p>
           </div>
 
           <div className="flexBetween">
             <div className="flex flex-col">
-              <p className="regular-16 block text-gray-20">Distance</p>
-              <p className="bold-20 text-white">173.28 mi</p>
+              <p className="regular-16 block text-gray-20">Mesafe</p>
+              <p className="bold-20 text-white">173.28 km</p>
             </div>
             <div className="flex flex-col">
-              <p className="regular-16 block text-gray-20">Elevation</p>
+              <p className="regular-16 block text-gray-20">Yükseklik</p>
               <p className="bold-20 text-white">2.040 km</p>
             </div>
           </div>
