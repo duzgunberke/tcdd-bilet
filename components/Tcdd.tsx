@@ -3,63 +3,23 @@ import { SeferSorgulamaKriterWSDVO } from '@/models/TrainRequest';
 import { SeferSorgulamaResponse } from '@/models/TrainRespons';
 import { useState } from 'react';
 import Switch from "react-switch";
-import Datepicker from "tailwind-datepicker-react"
+import Datepicker from "react-tailwindcss-datepicker";
 
-const dateOptions = {
-	title: "Demo Title",
-	autoHide: true,
-	todayBtn: false,
-	clearBtn: true,
-	clearBtnText: "Clear",
-	maxDate: new Date("2030-01-01"),
-	minDate: new Date("1950-01-01"),
-	theme: {
-		background: "bg-gray-700 dark:bg-gray-800",
-		todayBtn: "",
-		clearBtn: "",
-		icons: "",
-		text: "",
-		disabledText: "bg-red-500",
-		input: "",
-		inputIcon: "",
-		selected: "",
-	},
-	icons: {
-		// () => ReactElement | JSX.Element
-		prev: () => <span>Previous</span>,
-		next: () => <span>Next</span>,
-	},
-	datepickerClassNames: "top-12",
-	defaultDate: new Date("2022-01-01"),
-	language: "en",
-	disabledDates: [],
-	weekDays: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-	inputNameProp: "date",
-	inputIdProp: "date",
-	inputPlaceholderProp: "Select Date",
-	inputDateFormatProp: {
-		day: "numeric",
-		month: "long",
-		year: "numeric"
-	}
-}
+
 
 const SeferSorgula = () => {
   const [isLoading, setIsLoading] = useState(false);
   const[sw,setSw]=useState(false);
-  const [show, setShow] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [value, setValue] = useState({
+    startDate: new Date(),
+    endDate: new Date() // endDate'yi Date tipinde tutuyoruz
+  });
 
-  const handleDateChange = (date: Date | null) => {
-    if (date) {
-      setSelectedDate(date);
-      console.log(date);
-    }
+  const handleValueChange = (newValue: any) => {
+    console.log("newValue:", newValue);
+    setValue(newValue);
   };
 
-  const handleClose = (state: boolean) => {
-    setShow(state);
-  };
   const handleSwChange=(checked:boolean) =>{
     setSw(!sw);
   }
@@ -195,7 +155,7 @@ const SeferSorgula = () => {
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
           Tren Tarihi
         </label>
-        {/* <Datepicker options={dateOptions} onChange={handleDateChange} show={show} setShow={handleClose} /> */}
+        <Datepicker primaryColor={"green"} displayFormat={"MM/DD/YYYY"} placeholder='Tren Tarihi' asSingle={true} useRange={false} value={value} onChange={handleValueChange} />
 
     </div>
     {/* YOLCU SAYISI */}

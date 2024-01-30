@@ -4,7 +4,10 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    "./node_modules/tailwind-datepicker-react/dist/**/*.js", 
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
+    '../../node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
+    './node_modules/tailwind-datepicker-react/dist/**/*.js'
   ],
   theme: {
     extend: {
@@ -50,5 +53,6 @@ module.exports = {
       },
     },
   },
+  extend: {},
   plugins: [],
 };
