@@ -13,7 +13,11 @@ export interface SeferSorgulamaKriterWSDVO {
     binisIstasyonId?: number | undefined;
     inisIstasyonId?: number | undefined;
   }
-
+  export interface Istasyon {
+    istasyonId: number;
+    istasyonAdi: string;
+    toStationIds: number[];
+  }
   // Headers
 export interface RequestHeaders {
     'Accept': string;
