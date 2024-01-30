@@ -17,28 +17,28 @@ export const NAV_LINKS = [
   // FEATURES SECTION
   export const FEATURES = [
     {
-      title: 'Real maps can be offline',
+      title: 'Deneme',
       icon: '/map.svg',
       variant: 'green',
       description:
-        'We provide a solution for you to be able to use our application when climbing, yes offline maps you can use at any time there is no signal at the location',
+        'Deneme',
     },
     {
-      title: 'Set an adventure schedule',
+      title: 'Deneme',
       icon: '/calendar.svg',
       variant: 'green',
       description:
-        "Schedule an adventure with friends. On holidays, there are many interesting offers from Hilink. That way, there's no more discussion",
+        "Deneme",
     },
     {
-      title: 'Technology using augment reality',
+      title: 'Deneme',
       icon: '/tech.svg',
       variant: 'green',
       description:
-        'Technology uses augmented reality as a guide to your hiking trail in the forest to the top of the mountain. Already supported by the latest technology without an internet connection',
+"deneme"
     },
     {
-      title: 'Many new locations every month',
+      title: 'Deneme',
       icon: '/location.svg',
       variant: 'orange',
       description:

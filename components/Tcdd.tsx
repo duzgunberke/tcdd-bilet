@@ -3,11 +3,64 @@ import { SeferSorgulamaKriterWSDVO } from '@/models/TrainRequest';
 import { SeferSorgulamaResponse } from '@/models/TrainRespons';
 import { useState } from 'react';
 import Switch from "react-switch";
+import Datepicker from "tailwind-datepicker-react"
+
+const dateOptions = {
+	title: "Demo Title",
+	autoHide: true,
+	todayBtn: false,
+	clearBtn: true,
+	clearBtnText: "Clear",
+	maxDate: new Date("2030-01-01"),
+	minDate: new Date("1950-01-01"),
+	theme: {
+		background: "bg-gray-700 dark:bg-gray-800",
+		todayBtn: "",
+		clearBtn: "",
+		icons: "",
+		text: "",
+		disabledText: "bg-red-500",
+		input: "",
+		inputIcon: "",
+		selected: "",
+	},
+	icons: {
+		// () => ReactElement | JSX.Element
+		prev: () => <span>Previous</span>,
+		next: () => <span>Next</span>,
+	},
+	datepickerClassNames: "top-12",
+	defaultDate: new Date("2022-01-01"),
+	language: "en",
+	disabledDates: [],
+	weekDays: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+	inputNameProp: "date",
+	inputIdProp: "date",
+	inputPlaceholderProp: "Select Date",
+	inputDateFormatProp: {
+		day: "numeric",
+		month: "long",
+		year: "numeric"
+	}
+}
 
 const SeferSorgula = () => {
   const [isLoading, setIsLoading] = useState(false);
   const[sw,setSw]=useState(false);
-  const handleChange2=(checked:boolean) =>{
+  const [show, setShow] = useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const handleDateChange = (date: Date | null) => {
+    if (date) {
+      setSelectedDate(date);
+      console.log(date);
+    }
+  };
+
+  const handleClose = (state: boolean) => {
+    setShow(state);
+  };
+  const handleSwChange=(checked:boolean) =>{
     setSw(!sw);
   }
   const [formValues, setFormValues] = useState({
@@ -16,7 +69,7 @@ const SeferSorgula = () => {
     gidisTarih: '',
     yolcuSayisi: 1,
   });
-
+ 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => ({
@@ -96,6 +149,7 @@ const SeferSorgula = () => {
     
 <form className="w-full max-w-2xl mx-auto">
   <div className="flex flex-wrap -mx-3 mb-6">
+    {/* BİNİŞ ISTASYONU */}
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
         Biniş İstasyonu
@@ -115,6 +169,7 @@ const SeferSorgula = () => {
         </div>
       </div>    
     </div>
+    {/* VARIŞ ISTASYONU */}
     <div className="w-full md:w-1/2 px-3">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
         Varış İstasyonu
@@ -134,27 +189,16 @@ const SeferSorgula = () => {
       </div>    
     </div>
   </div>
-
+    {/* TREN TARIHI */}
   <div className="flex flex-wrap -mx-3 mb-6">
     <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
           Tren Tarihi
         </label>
-        <div className="relative">
-          <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-            <option>İzmit</option>
-            <option>Konya</option>
-            <option>Ankara</option>
-            <option>Gebze</option>
-            <option>Eskişehir</option>
-            <option>Söğütlüçeşme (İstanbul)</option>
-            <option>Eskişehir</option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-          </div>
-        </div>    
+        {/* <Datepicker options={dateOptions} onChange={handleDateChange} show={show} setShow={handleClose} /> */}
+
     </div>
+    {/* YOLCU SAYISI */}
     <div className="w-full md:w-1/3 px-3">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
         Yolcu Sayısı
@@ -162,12 +206,13 @@ const SeferSorgula = () => {
       <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="number" />
 
     </div>
+    {/* ENGELLI KOLTUĞU */}
     <div className="w-full md:w-1/3 px-3 ">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
         Engelli Koltuğu
       </label> 
       <div className='relative py-3 px-3'>
-        <Switch onChange={handleChange2} checked={sw} width={65} height={30} className=""/>
+        <Switch onChange={handleSwChange} checked={sw} width={65} height={30} className=""/>
       </div>
     </div>
   </div>
