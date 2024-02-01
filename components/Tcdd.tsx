@@ -20,11 +20,17 @@ const SeferSorgula = () => {
   const handleDateValueChange = (newValue: any) => {
     console.log("newValue:", newValue);
     setDateValue(newValue);
+    formValues.gidisTarih = dateValue.startDate.toString();
   };
 
-  const handleSwChange=(checked:boolean) =>{
-    setSw(!sw);
-  }
+  const handleSwChange = (checked: boolean) => {
+    setSw(checked);
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      engelliKoltugu: checked,
+    }));
+  };
+  
   
   const kalkisIstasyonuDegisti = (secilenKalkis:string) => {
     setKalkisIstasyonu(secilenKalkis);
@@ -50,6 +56,8 @@ const SeferSorgula = () => {
           const varisIstasyonu = stations.find(istasyon => istasyon.istasyonId === id);
           formValues.binisIstasyonId = secilenKalkisIstasyonu!.istasyonId;
           formValues.inisIstasyonId = varisIstasyonu!.istasyonId;
+          formValues.binisIstasyonu=secilenKalkisIstasyonu.istasyonAdi;
+          formValues.inisIstasyonu=varisIstasyonu!.istasyonAdi;
           return varisIstasyonu ? varisIstasyonu.istasyonAdi : '';
        }));
     }
@@ -100,7 +108,8 @@ const SeferSorgula = () => {
       ...formValues,
       ...fixedValues,
     };
-
+    
+    console.log(requestData);
     try {
       const response = await fetch(apiEndpoint, {
         method: 'POST',
@@ -129,91 +138,107 @@ const SeferSorgula = () => {
   };
 
   return (
-    
-<form className="w-full max-w-2xl mx-auto">
-  <div className="flex flex-wrap -mx-3 mb-6">
-    {/* BİNİŞ ISTASYONU */}
-    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-        Biniş İstasyonu
-      </label>
-      <div className="relative">
-      <select
-        className="block appearance-none w-full md:w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        value={kalkisIstasyonu}
-        onChange={(e) => kalkisIstasyonuDegisti(e.target.value)}
-      >
-        <option value="">Kalkış İstasyonu Seçin</option>
-        {stations.map((istasyon) => (
-            <option key={istasyon.istasyonId} value={istasyon.istasyonAdi}>
-              {istasyon.istasyonAdi}
-            </option>
-        ))}
-      </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
-      </div>    
-    </div>
-    {/* VARIŞ ISTASYONU */}
-    <div className="w-full md:w-1/2 px-3">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-        Varış İstasyonu
-      </label>
-      <div className="relative">
-      <select
-        className="block appearance-none w-full md:w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        value={varisIstasyonu}
-        onChange={(e) => setVarisIstasyonu(e.target.value)}
-      >
-        <option value="">Varış İstasyonu Seçin</option>
-        {varisIstasyonlari.map((istasyon) => (
-            <option key={istasyon} value={istasyon}>
-              {istasyon}
-            </option>
-        ))}
-      </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
-      </div>    
-    </div>
-  </div>
-    {/* TREN TARIHI */}
-  <div className="flex flex-wrap -mx-3 mb-6">
-    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+  <form className="w-full max-w-2xl mx-auto">
+    <div className="flex flex-wrap -mx-3 mb-6">
+      {/* BİNİŞ ISTASYONU */}
+      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-          Tren Tarihi
+          Biniş İstasyonu
         </label>
-        <div className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-          <Datepicker primaryColor={"green"} displayFormat={"MM/DD/YYYY"} placeholder='Tren Tarihi' asSingle={true} useRange={false} value={dateValue} onChange={handleDateValueChange} />
-        </div>
-    </div>
-    {/* YOLCU SAYISI */}
-    <div className="w-full md:w-1/3 px-3">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-        Yolcu Sayısı
-      </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="number" />
-
-    </div>
-    {/* ENGELLI KOLTUĞU */}
-    <div className="w-full md:w-1/3 px-3 ">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-        Engelli Koltuğu
-      </label> 
-      <div className='relative py-3 px-3'>
-        <Switch onChange={handleSwChange} checked={sw} width={65} height={30} className=""/>
+        <div className="relative">
+        <select
+          className="block appearance-none w-full md:w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          value={kalkisIstasyonu}
+          onChange={(e) => kalkisIstasyonuDegisti(e.target.value)}
+        >
+          <option value="">Kalkış İstasyonu Seçin</option>
+          {stations.map((istasyon) => (
+              <option key={istasyon.istasyonId} value={istasyon.istasyonAdi}>
+                {istasyon.istasyonAdi}
+              </option>
+          ))}
+        </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>    
+      </div>
+      {/* VARIŞ ISTASYONU */}
+      <div className="w-full md:w-1/2 px-3">
+        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+          Varış İstasyonu
+        </label>
+        <div className="relative">
+        <select
+          className="block appearance-none w-full md:w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          value={varisIstasyonu}
+          onChange={(e) => setVarisIstasyonu(e.target.value)}
+        >
+          <option value="">Varış İstasyonu Seçin</option>
+          {varisIstasyonlari.map((istasyon) => (
+              <option key={istasyon} value={istasyon}>
+                {istasyon}
+              </option>
+          ))}
+        </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>    
       </div>
     </div>
-  </div>
+      {/* TREN TARIHI */}
+    <div className="flex flex-wrap -mx-3 mb-6">
+      <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+            Tren Tarihi
+          </label>
+          <div className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+            <Datepicker primaryColor={"green"} displayFormat={"MM/DD/YYYY"} placeholder='Tren Tarihi' asSingle={true} useRange={false} value={dateValue} onChange={handleDateValueChange} />
+          </div>
+      </div>
+      {/* YOLCU SAYISI */}
+      <div className="w-full md:w-1/3 px-3">
+        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+          Yolcu Sayısı
+        </label>
+        <input
+          name="yolcuSayisi"
+          className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-zip"
+          type="number"
+          value={formValues.yolcuSayisi}
+          onChange={handleChange}
+        />
+      </div>
+      {/* ENGELLI KOLTUĞU */}
+      <div className="w-full md:w-1/3 px-3 ">
+        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+          Engelli Koltuğu
+        </label> 
+        <div className='relative py-3 px-3'>
+        <Switch
+          name="engelliKoltugu"
+          onChange={handleSwChange}
+          checked={sw}
+          width={65}
+          height={30}
+          className=""
+        />
+        </div>
+      </div>
+    </div>
 
-  <div className="flex flex-wrap  mb-2">
-      <button className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
-      Bilet Aramaya Başla
-      </button>
-  </div>
-</form>
+    <div className="flex flex-wrap  mb-2">
+    <button
+      disabled={isLoading}
+      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      onClick={fetchData}
+    >
+      {isLoading ? 'Loading...' : 'Bilet Aramaya Başla'}
+    </button>
+    </div>
+  </form>
 
   );
 };
