@@ -5,7 +5,6 @@ import {
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
 };
 
 const nextConfigFunction = async (phase) => {
