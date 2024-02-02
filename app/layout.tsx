@@ -1,5 +1,4 @@
-"use client"
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from "next";
 import './globals.css'
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -10,24 +9,24 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { constructMetadata } from '@/lib/utils/metadata';
 
-// export const metadata = constructMetadata()
+export const metadata = constructMetadata()
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname();
-  const isHome = pathname ==="/";
-  const [isLoading,setIsLoading]=useState(isHome);
+  // const pathname = usePathname();
+  // const isHome = pathname ==="/";
+  // const [isLoading,setIsLoading]=useState(isHome);
 
-  useEffect(()=>{
-    if(isLoading) return;
-  },[isLoading])
+  // useEffect(()=>{
+  //   if(isLoading) return;
+  // },[isLoading])
   return (
     <html lang="en">
       <body>
-        {isLoading && isHome ? (<SplashScreen finishLoading={()=>setIsLoading(false)}/>):(
+        {/* {isLoading && isHome ? (<SplashScreen finishLoading={()=>setIsLoading(false)}/>):( */}
         <>
           <Navbar />
           <main className="relative overflow-hidden">
@@ -37,7 +36,7 @@ export default function RootLayout({
           <Analytics />
           <SpeedInsights />
         </>
-        )}
+        {/* )} */}
       </body>
     </html>
   )
