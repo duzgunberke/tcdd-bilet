@@ -1,8 +1,8 @@
 // NAVIGATION
 export const NAV_LINKS = [
     { href: '/', key: 'home', label: 'Anasayfa' },
-    { href: '/', key: 'how_hilink_work', label: 'Nasıl Çalışıyor' },
-    { href: '/', key: 'services', label: 'Hizmet' },
+    { href: '#camp', key: 'how_hilink_work', label: 'Nasıl Çalışıyor' },
+    { href: '#features', key: 'services', label: 'Hizmet' },
     { href: '/', key: 'contact_us', label: 'İletişim' },
   ];
   

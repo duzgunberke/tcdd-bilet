@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Button from './Button'
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -38,11 +39,13 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col w-full gap-3 sm:flex-row">
+          <Link href={'#guide'} scroll={true}>
           <Button 
             type="button" 
             title="Başlayalım" 
             variant="btn_green" 
           />
+          </Link>
           <Button 
             type="button" 
             title="Nasıl Çalışıyor?" 
