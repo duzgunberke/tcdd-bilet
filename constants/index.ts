@@ -17,33 +17,30 @@ export const NAV_LINKS = [
   // FEATURES SECTION
   export const FEATURES = [
     {
-      title: 'Deneme',
+      title: 'Alternatifler',
       icon: '/map.svg',
       variant: 'green',
       description:
-        'Deneme',
+        'Uygulama, farklı şehirler arasında seyahat etmek istediğiniz tarih ve saat bilgilerini girdiğinizde, en uygun rotaları belirlemek için akıllı algoritmalar kullanır. Örneğin, direk bir bağlantı bulunamadığında, size aktarmalı veya farklı güzergahlar önerir.',
     },
     {
-      title: 'Deneme',
+      title: 'Rota Bulucu',
       icon: '/calendar.svg',
       variant: 'green',
       description:
-        "Deneme",
+        "Seyahat Rota Bulucu, seyahat planlarınızı kolaylaştırmak ve en uygun rotaları bulmanıza yardımcı olmak için tasarlanmış bir uygulamadır. Seyahat etmek istediğiniz noktalar arasında doğrudan bağlantı bulamıyorsanız, size alternatif rotalar sunarak seyahat planlarınızı kolaylaştırır.",
     },
     {
-      title: 'Deneme',
+      title: 'Her Yere Sorunsuz Ulaşım',
       icon: '/tech.svg',
       variant: 'green',
-      description:
-"deneme"
+      description:"Seyahat Rota Bulucu, kullanıcı dostu arayüzü ve hızlı işlem süreleriyle seyahat planlarınızı kolaylaştırır. Şimdi indirin ve seyahatlerinizi planlarken zaman kazanın!"
     },
     {
       title: 'Deneme',
       icon: '/location.svg',
       variant: 'orange',
-      description:
-        'Lots of new locations every month, because we have a worldwide community of climbers who share their best experiences with climbing',
-    },
+      description:"deneme"    },
   ];
   
   // FOOTER SECTION

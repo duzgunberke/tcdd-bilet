@@ -53,14 +53,14 @@ const FeatureImage = () => {
       <div className="hide-scrollbar flex h-[340px] w-full items-start justify-start gap-8 overflow-x-auto lg:h-[400px] xl:h-[640px]">
         <SlideItem 
           backgroundImage="bg-bg-img-1"
-          title="Deneme Title"
-          subtitle="Deneme Subtitle"
+          title="Rota Bulucu"
+          subtitle="Uygun Seyahat Rotası Önerileri"
           peopleJoined="50+ Kullanıcı"
         />
         <SlideItem 
           backgroundImage="bg-bg-img-2"
-          title="Deneme Title"
-          subtitle="Deneme Subtitle"
+          title="Rota Bulucu"
+          subtitle="Uygun Seyahat Rotası Önerileri"
           peopleJoined="50+ Kullanıcı"
         />
       </div>
